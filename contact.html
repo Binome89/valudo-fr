@@ -15,23 +15,25 @@
 <div class="contactgrid">
 <div>
 <div class="prose" style="max-width:620px"><span class="ey">Votre projet</span><p>Quelques informations suffisent pour préparer un échange utile : produit recherché, marché, volumes, format ou calendrier, partagez ce que vous connaissez déjà. Votre projet est encore en réflexion ? Aucun problème, quelques éléments suffisent pour commencer l'échange.</p></div>
-<form id="cform" class="form">
-<div class="field"><label>Nom</label><input type="text" placeholder="Votre nom"></div>
-<div class="field"><label>Société</label><input type="text" placeholder="Votre société"></div>
-<div class="field"><label>Email</label><input type="email" placeholder="vous@societe.com"></div>
-<div class="field"><label>Téléphone</label><input type="tel" placeholder="+33…"></div>
-<div class="field"><label>Nature du projet</label><select><option>Approvisionnement / sourcing</option><option>Développement produit</option><option>Marque propre / marque blanche</option><option>Recherche d'une nouvelle origine</option><option>Demande d'échantillon</option><option>Autre</option></select></div>
-<div class="field"><label>Marché / application</label><select><option>Alimentaire</option><option>Cosmétique</option><option>Distribution / grossiste</option><option>Autre</option><option>À définir</option></select></div>
-<div class="field full"><label>Produit / matière recherchée</label><input type="text" placeholder="Ex. : huile de coco RBD Bio, eau de coco, farine de coco, karité brut…"></div>
-<div class="field"><label>Volume estimatif <span class="opt">— si connu</span></label><input type="text" placeholder="Ex. 20 t/an, 1 container, 50 000 unités…"></div>
-<div class="field"><label>Date de livraison souhaitée <span class="opt">— si connue</span></label><input type="text" placeholder="Ex. janvier 2027, T1 2027…"></div>
-<div class="field full"><label>Votre message</label><textarea placeholder="Décrivez votre besoin, vos contraintes ou les premières informations dont vous disposez."></textarea></div>
+<form id="cform" class="form" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+<input type="hidden" name="form-name" value="contact">
+<p hidden><label>Ne pas remplir&nbsp;: <input name="bot-field"></label></p>
+<div class="field"><label>Nom</label><input type="text" name="nom" placeholder="Votre nom"></div>
+<div class="field"><label>Société</label><input type="text" name="societe" placeholder="Votre société"></div>
+<div class="field"><label>Email</label><input type="email" name="email" placeholder="vous@societe.com"></div>
+<div class="field"><label>Téléphone</label><input type="tel" name="telephone" placeholder="+33…"></div>
+<div class="field"><label>Nature du projet</label><select name="nature"><option>Approvisionnement / sourcing</option><option>Développement produit</option><option>Marque propre / marque blanche</option><option>Recherche d'une nouvelle origine</option><option>Demande d'échantillon</option><option>Autre</option></select></div>
+<div class="field"><label>Marché / application</label><select name="marche"><option>Alimentaire</option><option>Cosmétique</option><option>Distribution / grossiste</option><option>Autre</option><option>À définir</option></select></div>
+<div class="field full"><label>Produit / matière recherchée</label><input type="text" name="produit" placeholder="Ex. : huile de coco RBD Bio, eau de coco, farine de coco, karité brut…"></div>
+<div class="field"><label>Volume estimatif <span class="opt">— si connu</span></label><input type="text" name="volume" placeholder="Ex. 20 t/an, 1 container, 50 000 unités…"></div>
+<div class="field"><label>Date de livraison souhaitée <span class="opt">— si connue</span></label><input type="text" name="date_livraison" placeholder="Ex. janvier 2027, T1 2027…"></div>
+<div class="field full"><label>Votre message</label><textarea name="message" placeholder="Décrivez votre besoin, vos contraintes ou les premières informations dont vous disposez."></textarea></div>
 <div class="field full"><button class="btn" type="submit">Parler de mon projet</button></div>
 </form>
 <p id="cform-ok" class="formok">Merci, votre demande a bien été envoyée.</p>
 <p class="note">Vos informations sont utilisées uniquement pour traiter votre demande.</p>
-<!-- Prototype : à la mise en ligne, connecter ce formulaire à une vraie soumission serveur / CRM Valúdo. -->
-<script>(function(){var f=document.getElementById('cform');if(!f)return;f.addEventListener('submit',function(e){e.preventDefault();f.style.display='none';var ok=document.getElementById('cform-ok');ok.style.display='block';ok.scrollIntoView({behavior:'smooth',block:'center'});});})();</script>
+<!-- Netlify Forms : les soumissions arrivent dans Netlify > Forms. Régler la notification email vers dtoursel@valudo.fr dans le dashboard Netlify. -->
+<script>(function(){var f=document.getElementById('cform');if(!f)return;var ok=document.getElementById('cform-ok');function show(){f.style.display='none';ok.style.display='block';ok.scrollIntoView({behavior:'smooth',block:'center'});}f.addEventListener('submit',function(e){e.preventDefault();fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams(new FormData(f)).toString()}).then(show).catch(show);});})();</script>
 </div>
 <figure class="pcap contactfig"><img src="assets/img/eng_equipe.jpg" alt="L'équipe Valúdo à São Tomé-et-Príncipe"><figcaption class="cap">L'équipe Valúdo, à São Tomé-et-Príncipe.</figcaption></figure>
 </div></div></section>
@@ -39,7 +41,7 @@
 <section class="sec-cream"><div class="wrap center prose" style="max-width:760px;margin:0 auto">
 <span class="ey">Nous joindre</span><h2 class="big">Valúdo France</h2>
 <p style="margin:0 auto 4px">Une équipe capable de faire le lien entre la filière, le produit et le marché.</p>
-<p style="margin:0 auto"><a href="mailto:contact@valudo.fr" style="color:var(--terra);font-weight:600">contact@valudo.fr</a><br><a href="https://www.linkedin.com/company/valudo.st/" target="_blank" rel="noopener" style="color:var(--terra);font-weight:600">Valúdo sur LinkedIn &#8599;</a></p>
+<p style="margin:0 auto"><a href="mailto:contact@valudo.fr" style="color:var(--terra);font-weight:600">contact@valudo.fr</a><br><a href="https://www.linkedin.com/company/valudo" target="_blank" rel="noopener" style="color:var(--terra);font-weight:600">Valúdo sur LinkedIn &#8599;</a></p>
 <p class="note" style="margin-top:14px">Votre demande sera orientée vers l'interlocuteur le plus adapté selon votre projet : filières, approvisionnement, produits, marchés ou partenariats.</p></div></section>
 
 <section class="ctaband"><div class="wrap"><h2>Un projet précis ou simplement une piste à explorer&nbsp;?</h2>
@@ -50,9 +52,9 @@
 <div><img class="lv" src="assets/img/logo_white.png" alt="Valúdo">
 <p style="max-width:330px">Nous construisons des filières intégrées, bio et tracées, de l'origine au marché.</p>
 <div class="duv">Membre du <img src="assets/img/logo_duval.png" alt="Groupe Duval"> · Entreprise à mission</div>
-<a class="fsocial" href="https://www.linkedin.com/company/valudo.st/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.35V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 110-4.13 2.06 2.06 0 010 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.55C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg>Suivez-nous sur LinkedIn</a></div>
+<a class="fsocial" href="https://www.linkedin.com/company/valudo" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.35V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 110-4.13 2.06 2.06 0 010 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.55C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg>Suivez-nous sur LinkedIn</a></div>
 <div><h4>Nos expertises</h4><ul><li><a href="notre-expertise.html">Notre expertise</a></li><li><a href="nos-solutions.html">Nos solutions</a></li><li><a href="nos-produits.html">Nos produits</a></li><li><a href="engagements.html">Nos engagements</a></li><li><a href="blog.html">Blog</a></li><li><a href="contact.html">Contact</a></li></ul></div>
-<div><h4>Contact</h4><ul><li><a href="mailto:gtaufflieb@valudo.fr">contact@valudo.fr</a></li><li>Valúdo France</li><li><a href="mentions-legales.html">Mentions légales</a></li><li><a href="#" onclick="if(window.tarteaucitron)tarteaucitron.userInterface.openPanel();return false;">Gestion des cookies</a></li></ul></div>
+<div><h4>Contact</h4><ul><li><a href="mailto:contact@valudo.fr">contact@valudo.fr</a></li><li>Valúdo France</li><li><a href="mentions-legales.html">Mentions légales</a></li><li><a href="#" onclick="if(window.tarteaucitron)tarteaucitron.userInterface.openPanel();return false;">Gestion des cookies</a></li></ul></div>
 </div>
 <div class="fcerts">
 <img src="assets/img/certw_bio.png" alt="Eurofeuille Bio UE">
