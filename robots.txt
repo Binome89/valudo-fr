@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://valudo.fr/sitemap.xml
