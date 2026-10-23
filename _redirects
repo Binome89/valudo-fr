@@ -1,0 +1,20 @@
+# Redirections permanentes : adresses sans .html vers les adresses canoniques
+/index.html  /  301!
+/blog-beurre-karite-brut-raffine  /blog-beurre-karite-brut-raffine.html  301!
+/blog-certifications-bio-equitables  /blog-certifications-bio-equitables.html  301!
+/blog-eau-de-coco-bulk-tetrapack  /blog-eau-de-coco-bulk-tetrapack.html  301!
+/blog-huile-coco-vco-rbd  /blog-huile-coco-vco-rbd.html  301!
+/blog-sourcing-bio-filiere-tracee  /blog-sourcing-bio-filiere-tracee.html  301!
+/blog  /blog.html  301!
+/contact  /contact.html  301!
+/en-commitments  /en-commitments.html  301!
+/en-contact  /en-contact.html  301!
+/en-expertise  /en-expertise.html  301!
+/en-index  /en-index.html  301!
+/en-products  /en-products.html  301!
+/en-solutions  /en-solutions.html  301!
+/engagements  /engagements.html  301!
+/mentions-legales  /mentions-legales.html  301!
+/nos-produits  /nos-produits.html  301!
+/nos-solutions  /nos-solutions.html  301!
+/notre-expertise  /notre-expertise.html  301!
